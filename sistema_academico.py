@@ -49,9 +49,11 @@ def cadastrar():
 def pesquisar():
     print('-->Opção de Pesquisa:')
     proc = input('--->Número da matrícula: ')
-    if matricul[matri] == proc:
-        return matricul[matri]
-
+    if proc in matricul:
+        return matricul[proc]
+    else:
+        return None
+    
 
 def listar():
     print('-->Opção de Listaçao: ')
@@ -65,7 +67,8 @@ def atualizar():
 def remover():
     print('-->Opção de Remoção:')
     remov = input('Número de matrícula: ')
-    matricul.pop(remov)
+    matricul.pop(int(remov))
+    return remov
 
 
 cond = True
@@ -76,7 +79,10 @@ while (cond):
         print(f'--->Aluno cadastrado')
     elif (opcao == 2):
         resultado = pesquisar()
-        print(f'--->Pesquisa: {resultado}')
+        if resultado == None:
+            print(f'--->O Aluno não foi encontrado!')
+        else:
+            print(f'--->Pesquisa: {resultado}')
     elif (opcao == 3):
         resultado = listar()
         print(f'--->Listação: {resultado}')
@@ -85,7 +91,7 @@ while (cond):
         print(f'--->Atualizado.')
     elif (opcao == 5):
         resultado = remover()
-        print(f'--->{remov} revomovido.')
+        print(f'--->{resultado} removido.')
     elif (opcao == 6):
         cond = False
         print('--Você escolheu encerrar o programa--')
